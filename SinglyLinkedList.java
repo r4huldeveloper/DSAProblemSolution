@@ -172,6 +172,7 @@ public class SinglyLinkedList {
         return mainPtr;
     }
 
+    // REMOVE THE DUPLICATES IN SORTED LL
     public void removeDuplicates(){
         if (head == null){
             return;
