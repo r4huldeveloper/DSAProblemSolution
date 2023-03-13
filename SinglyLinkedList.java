@@ -1,6 +1,6 @@
 public class SinglyLinkedList {
 
-    private ListNode head;
+    private static ListNode head;
 
     private static class ListNode{
         private int data;
@@ -172,6 +172,21 @@ public class SinglyLinkedList {
         return mainPtr;
     }
 
+    public void removeDuplicates(){
+        if (head == null){
+            return;
+        }
+        ListNode current = head;
+        while (current != null && current.next != null){
+            if (current.data == current.next.data){
+                current.next = current.next.next;
+            } else{
+                current = current.next;
+            }
+        }
+
+    }
+
     // Displaying in The linked-list format
     public void display(ListNode head){
         ListNode current = head;
@@ -216,25 +231,27 @@ public class SinglyLinkedList {
 //        System.out.println();
 //        System.out.println("Length is - "+sll.length());
 
-        sll.insert(1,3);
-        sll.insert(2,5);
-        sll.insert(3,2);
-        sll.insert(4,4);
-        sll.insert(5,7);
+//        sll.insert(1,3);
+//        sll.insert(2,5);
+//        sll.insert(3,2);
+//        sll.insert(4,4);
+//        sll.insert(5,7);
        // sll.deleteFirst();
         //sll.deleteLast();
         //sll.deletePositon(2);
        // System.out.println(sll.searchElement(5));
-//        sll.insertFirst(11);
-//        sll.insertFirst(1);
-//        sll.insertFirst(10);
-//        sll.insertFirst(8);
-//        sll.insertFirst(7);
-
+        sll.insertFirst(3);
+        sll.insertFirst(3);
+        sll.insertFirst(2);
+        sll.insertFirst(1);
+        sll.insertFirst(1);
+        sll.display(head);
+        sll.removeDuplicates();
+        sll.display(head);
 //        ListNode reverseListHead = sll.reverse(head);
 //       sll.display(reverseListHead);
 //        System.out.println(sll.getMiddleNode().data);
-        ListNode findNElement = sll.getNthNodeFromEnd(4);
-        System.out.println(findNElement.data);
+//        ListNode findNElement = sll.getNthNodeFromEnd(4);
+//        System.out.println(findNElement.data);
     }
 }
