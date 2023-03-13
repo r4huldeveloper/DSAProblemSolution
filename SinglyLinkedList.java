@@ -172,7 +172,6 @@ public class SinglyLinkedList {
         return mainPtr;
     }
 
-    // REMOVE THE DUPLICATES IN SORTED LL
     public void removeDuplicates(){
         if (head == null){
             return;
@@ -185,8 +184,24 @@ public class SinglyLinkedList {
                 current = current.next;
             }
         }
-
     }
+      // INSERT THE NODE IN A SORTED LL (MAINTAIN THE ORDER OF LIST)
+    public ListNode insertInSortedList(int value){
+        ListNode newNode = new ListNode(value);
+        if(head == null){
+            return newNode;
+        }
+        ListNode current = head;
+        ListNode temp = null;
+        while(current != null && current.data < newNode.data){
+            temp = current;
+            current = current.next;
+        }
+        newNode.next = current;
+        temp.next = newNode;
+        return head;
+    }
+
 
     // Displaying in The linked-list format
     public void display(ListNode head){
@@ -241,13 +256,14 @@ public class SinglyLinkedList {
         //sll.deleteLast();
         //sll.deletePositon(2);
        // System.out.println(sll.searchElement(5));
-        sll.insertFirst(3);
+        sll.insertFirst(7);
+        sll.insertFirst(6);
         sll.insertFirst(3);
         sll.insertFirst(2);
         sll.insertFirst(1);
-        sll.insertFirst(1);
         sll.display(head);
-        sll.removeDuplicates();
+        //sll.removeDuplicates();
+        sll.insertInSortedList(8);
         sll.display(head);
 //        ListNode reverseListHead = sll.reverse(head);
 //       sll.display(reverseListHead);
