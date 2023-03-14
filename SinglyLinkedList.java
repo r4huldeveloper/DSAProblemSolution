@@ -202,6 +202,55 @@ public class SinglyLinkedList {
         return head;
     }
 
+    // REMOVING/DELETING THE KEY FROM THE LL
+    public void deleteNode(int key){
+        ListNode current = head;
+        ListNode temp = null;
+        if (head==null){
+            return;
+        }
+        while (current != null && current.data != key){
+            temp = current;
+            current = current.next;
+        }
+        if (current == null) return;
+        temp.next = current.next;
+    }
+
+    // DETECT A LOOP IN A LIST
+    public void createALoopInLL(){
+        ListNode firstListNode = new ListNode(1);
+        ListNode secondListNode = new ListNode(2);
+        ListNode thirdListNode = new ListNode(3);
+        ListNode forthListNode = new ListNode(4);
+        ListNode fifthListNode = new ListNode(5);
+        ListNode sixListNode = new ListNode(6);
+
+        head = firstListNode;
+        firstListNode.next = secondListNode;
+        secondListNode.next = thirdListNode;
+        thirdListNode.next = forthListNode;
+        forthListNode.next = fifthListNode;
+        fifthListNode.next = sixListNode;
+        sixListNode.next = thirdListNode;
+
+    }
+
+
+    public boolean detectLoop(){
+        ListNode fastptr = head;
+        ListNode slowptr = head;
+        
+        while (fastptr != null && fastptr.next != null){
+            fastptr = fastptr.next.next;
+            slowptr = slowptr.next;
+            if (slowptr == fastptr){
+                return true;
+            }
+
+        }
+        return false;
+    }
 
     // Displaying in The linked-list format
     public void display(ListNode head){
@@ -256,15 +305,19 @@ public class SinglyLinkedList {
         //sll.deleteLast();
         //sll.deletePositon(2);
        // System.out.println(sll.searchElement(5));
-        sll.insertFirst(7);
-        sll.insertFirst(6);
-        sll.insertFirst(3);
-        sll.insertFirst(2);
-        sll.insertFirst(1);
-        sll.display(head);
+        // sll.insertFirst(7);
+        // sll.insertFirst(6);
+        // sll.insertFirst(3);
+        // sll.insertFirst(2);
+        // sll.insertFirst(1);
+    //    sll.display(head);
         //sll.removeDuplicates();
-        sll.insertInSortedList(8);
-        sll.display(head);
+    //    sll.insertInSortedList(8);
+    //   sll.deleteNode(7);
+    //    sll.display(head);
+        sll.createALoopInLL();
+        System.out.print(sll.detectLoop());
+
 //        ListNode reverseListHead = sll.reverse(head);
 //       sll.display(reverseListHead);
 //        System.out.println(sll.getMiddleNode().data);
