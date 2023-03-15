@@ -236,7 +236,6 @@ public class SinglyLinkedList {
 
     }
 
-
     public boolean detectLoop(){
         ListNode fastptr = head;
         ListNode slowptr = head;
@@ -252,8 +251,57 @@ public class SinglyLinkedList {
         return false;
     }
 
+    // START NODE OF THE LOOP IN LL
+
+    public ListNode startNodeInLoop(){
+        ListNode fastptr = head;
+        ListNode slowptr = head;
+
+        while (fastptr != null && fastptr.next != null){
+            fastptr = fastptr.next.next;
+            slowptr = slowptr.next;
+            if (slowptr == fastptr){
+                return getStartingNode(slowptr);
+            }
+        }
+        return null;
+    }
+
+    private ListNode getStartingNode(ListNode slowptr) {
+        ListNode temp = head;
+        while (temp != slowptr){
+            temp = temp.next;
+            slowptr = slowptr.next;
+        }
+        return temp;
+    }
+
+    // REMOVE THE LOOP FROM SLL
+
+    public void removeLoop() {
+        ListNode fastptr = head;
+        ListNode slowptr = head;
+
+        while (fastptr != null && fastptr.next != null) {
+            fastptr = fastptr.next.next;
+            slowptr = slowptr.next;
+            if (slowptr == fastptr) {
+                removeLoop(slowptr);
+                return;
+            }
+        }
+    }
+
+    private void removeLoop(ListNode slowptr){
+        ListNode temp = head;
+        while (temp.next != slowptr.next){
+            temp = temp.next;
+            slowptr = slowptr.next;
+        }
+        slowptr.next = null;
+    }
     // Displaying in The linked-list format
-    public void display(ListNode head){
+    public void display(){
         ListNode current = head;
         while(current != null){
             System.out.print(current.data + " --> ");
@@ -316,7 +364,10 @@ public class SinglyLinkedList {
     //   sll.deleteNode(7);
     //    sll.display(head);
         sll.createALoopInLL();
-        System.out.print(sll.detectLoop());
+        System.out.println(sll.detectLoop());
+        System.out.println(sll.startNodeInLoop().data);
+        sll.removeLoop();
+        sll.display();
 
 //        ListNode reverseListHead = sll.reverse(head);
 //       sll.display(reverseListHead);
