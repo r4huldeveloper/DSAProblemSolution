@@ -1,6 +1,6 @@
 public class SinglyLinkedList {
 
-    private static ListNode head;
+    private  ListNode head;
 
     private static class ListNode{
         private int data;
@@ -291,6 +291,29 @@ public class SinglyLinkedList {
             }
         }
     }
+      
+     // MERGE THE TWO SORTED SINGLY LINKED LIST      
+    public static ListNode merge(ListNode a , ListNode b){
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while (a != null && b != null){
+            if(a.data <= b.data){
+                tail.next = a;
+                a = a.next;
+            } else {
+                tail.next = b;
+                b = b.next;
+            }
+            tail = tail.next;
+        }
+
+        if(a == null) {
+            tail.next = b;
+        } else {
+            tail.next = a;
+        }
+        return dummy.next;
+    }
 
     private void removeLoop(ListNode slowptr){
         ListNode temp = head;
@@ -321,7 +344,7 @@ public class SinglyLinkedList {
         return count;
     }
     public static void main(String[] args) {
-        SinglyLinkedList sll = new SinglyLinkedList();
+        //SinglyLinkedList sll = new SinglyLinkedList();
 //        ListNode  head = new ListNode(10);
 //        ListNode second = new ListNode(1);
 //        ListNode third  = new ListNode(8);
@@ -363,16 +386,40 @@ public class SinglyLinkedList {
     //    sll.insertInSortedList(8);
     //   sll.deleteNode(7);
     //    sll.display(head);
-        sll.createALoopInLL();
-        System.out.println(sll.detectLoop());
-        System.out.println(sll.startNodeInLoop().data);
-        sll.removeLoop();
-        sll.display();
+        // sll.createALoopInLL();
+        // System.out.println(sll.detectLoop());
+        // System.out.println(sll.startNodeInLoop().data);
+        // sll.removeLoop();
+        // sll.display();
 
 //        ListNode reverseListHead = sll.reverse(head);
 //       sll.display(reverseListHead);
 //        System.out.println(sll.getMiddleNode().data);
 //        ListNode findNElement = sll.getNthNodeFromEnd(4);
 //        System.out.println(findNElement.data);
+
+          SinglyLinkedList sll1 = new SinglyLinkedList();
+          sll1.insertLast(1);
+          sll1.insertLast(4);
+          sll1.insertLast(8);
+
+          SinglyLinkedList sll2 = new SinglyLinkedList();
+          sll2.insertLast(3);
+          sll2.insertLast(5);
+          sll2.insertLast(8);
+
+        //   sll1.display();
+        //   sll2.display();
+
+          SinglyLinkedList result = new SinglyLinkedList();
+
+          result.head = merge(sll1.head, sll2.head);
+
+          result.display();
+
+
+
+
+
     }
 }
