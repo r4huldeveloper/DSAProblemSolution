@@ -323,6 +323,32 @@ public class SinglyLinkedList {
         }
         slowptr.next = null;
     }
+
+    // ADD TWO Linked List Elements 
+
+    public ListNode addTwoLL(ListNode a , ListNode b){
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        int carry = 0;
+
+        while(a != null || b != null){
+            int x = (a != null) ? a.val : 0;
+            int y = b != null ? b.val : 0;
+            int sum = carry + x + y;
+            carry = sum/10;
+            tail.next = new ListNode(sum%10);
+            tail = tail.next;
+
+            if(a != null) a = a.next;
+            if(b != null) b = b.next;
+        }
+        if(carry > 0){
+            tail.next = new ListNode(carry);
+        }
+        return dummy.next;
+  }
+    
+
     // Displaying in The linked-list format
     public void display(){
         ListNode current = head;
@@ -398,6 +424,8 @@ public class SinglyLinkedList {
 //        ListNode findNElement = sll.getNthNodeFromEnd(4);
 //        System.out.println(findNElement.data);
 
+
+          SinglyLinkedList sll = new SinglyLinkedList();
           SinglyLinkedList sll1 = new SinglyLinkedList();
           sll1.insertLast(1);
           sll1.insertLast(4);
@@ -408,14 +436,15 @@ public class SinglyLinkedList {
           sll2.insertLast(5);
           sll2.insertLast(8);
 
-        //   sll1.display();
+       
+
         //   sll2.display();
 
-          SinglyLinkedList result = new SinglyLinkedList();
+        //   SinglyLinkedList result = new SinglyLinkedList();
 
-          result.head = merge(sll1.head, sll2.head);
+        //   result.head = merge(sll1.head, sll2.head);
 
-          result.display();
+        //   result.display();
 
 
 
