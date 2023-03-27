@@ -78,16 +78,45 @@ public class DoublyLinkedList {
         length++;
     }
 
-    public static void main(String[] args) {
+
+    //DELETE THE FIRST NODE IN DLL
+    public ListNode deleteFirst() throws NoSuchFieldException {
+        if (isEmpty()){
+            throw new NoSuchFieldException();
+        }
+        ListNode temp = head;
+        if (head == tail){
+            tail = null;
+        } else {
+            head.next.previous = null;
+        }
+        head = head.next;
+        temp.next = null;
+        length--;
+        return temp;
+    }
+    public static void main(String[] args) throws NoSuchFieldException {
         DoublyLinkedList dll = new DoublyLinkedList();
         dll.insertLast(1);
+        dll.insertLast(10);
+        dll.insertLast(15);
+
+
 //        dll.insertLast(10);
 //        dll.insertLast(15);
 //        dll.insertLast(19);
 
-        dll.insertFirst(10);
+//        dll.insertFirst(10);
         dll.displayForward();
-        dll.displayBackward();
+//        dll.displayBackward();
+//        dll.deleteFirst();
+//        dll.deleteFirst();
+//        dll.deleteFirst();
+//        dll.deleteFirst();
+        
+
+
+
 
     }
 }
